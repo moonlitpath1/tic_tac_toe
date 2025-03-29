@@ -81,7 +81,6 @@ void TicTacToe::play()
         cout<<"Enter number where you want to put "<<curr<<": ";
         cin>>pos;
 
-        //add X/0 to board
         if(!board[board_num[pos].first][board_num[pos].second])
         {
             board[board_num[pos].first][board_num[pos].second] = curr;
@@ -93,8 +92,7 @@ void TicTacToe::play()
             continue;
         }
         
-
-      //result displaying
+       
         if(boxes_filled >= 9 || win(pos))
         {
             if(boxes_filled >= 9)
@@ -131,11 +129,10 @@ bool TicTacToe::win(int pos)
         return true;
     }
 
-    //diag1
     if (row == col && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
         return true;
     }
-  //diag 2
+
     if (row + col == 2 && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
         return true;
     }
@@ -164,18 +161,23 @@ void TicTacToe::reset()
 int main()
 {
     TicTacToe t;
-    t.play();   
-    char flag;
-    
-    cout<<"Play Again?(Y/N): ";
-    cin>>flag;
-    if(flag == 'Y' || flag == 'y')
-    {    
-        t.reset();
-        t.play();
-    }
-    else
+    char c;
+
+    while(true)
     {
-        cout<<"Thank you for playing!\n";
+        t.play();   
+        
+        cout<<"Play Again?(Y/N): ";
+        cin>>c;
+        if(c == 'Y' || c == 'y')
+        {    
+            t.reset();
+            continue;
+        }
+        else
+        {
+            cout<<"Thank you for playing!\n";
+            return 0;
+        }
     }
 }
